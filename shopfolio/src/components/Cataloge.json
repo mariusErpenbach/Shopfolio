@@ -1,0 +1,125 @@
+[
+    {
+        "productName" : "Airmax",
+        "productCategorie" : "shoes",
+        "price": 120,
+        "target-group" :[
+            "female","male"
+        ],
+        "sizesOnStock" : [
+      
+        ]
+    },
+    {
+        "productName" : "Superstar",
+        "productCategorie" : "shoes",
+        "price": 100,
+        "target-group" :[
+            "female","male"
+        ],
+        "sizesOnStock" : [
+     
+        ]
+    },
+    {
+        "productName" : "Chucks",
+        "productCategorie" : "shoes",
+        "price": 60,
+        "target-group" :[
+            "female"
+        ],
+        "sizesOnStock" : [
+       
+        ]
+    },
+    {
+        "productName" : "Polar",
+        "productCategorie" : "pants",
+        "price": 55,
+        "target-group" :[
+            "female","male","kids-f","kids-m"
+        ],
+        "sizesOnStock" : [
+            {"OneSize":false},
+            {"XS":5},
+            {"S":5},
+            {"M":5},
+            {"L":3},
+            {"XL":3},
+            {"XXL":1},
+            {"3XL":1}
+        ]
+    },
+    {
+        "productName" : "Jupiter",
+        "productCategorie" : "pants",
+        "price": 80,
+        "target-group" :[
+            "male","kids-m"
+        ],
+        "sizesOnStock" : [
+            {"OneSize":false},
+            {"XS":5},
+            {"S":5},
+            {"M":5},
+            {"L":3},
+            {"XL":3},
+            {"XXL":1},
+            {"3XL":1}
+        ]
+    },
+    {
+        "productName" : "Venus",
+        "productCategorie" : "pants",
+        "price": 45,
+        "target-group" :[
+            "female","kids-f"
+        ],
+        "sizesOnStock" : [
+            {"OneSize":false},
+            {"XS":5},
+            {"S":5},
+            {"M":5},
+            {"L":3},
+            {"XL":3},
+            {"XXL":1},
+            {"3XL":1}
+        ]
+    },
+    {
+        "productName" : "dumbbells PRO",
+        "productCategorie" : "Sport",
+        "price": 25,
+        "target-group" :[
+            "female","male","kids-f","kids-m"
+        ],
+        "sizesOnStock" : [
+            {"OneSize":false},
+            {"XS":5},
+            {"S":5},
+            {"M":5},
+            {"L":3},
+            {"XL":3},
+            {"XXL":1},
+            {"3XL":1}
+        ]
+    },
+    {
+        "productName" : "Hockey Terminator",
+        "productCategorie" : "Sport",
+        "price": 20,
+        "target-group" :[
+            "female","male","kids-f","kids-m"
+        ],
+        "sizesOnStock" : [
+            {"OneSize":false},
+            {"XS":5},
+            {"S":5},
+            {"M":5},
+            {"L":3},
+            {"XL":3},
+            {"XXL":1},
+            {"3XL":1}
+        ]
+    }
+]
