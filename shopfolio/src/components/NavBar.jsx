@@ -1,11 +1,12 @@
 import React from "react"
-const NavBar = () =>{
-
+const NavBar = (props) =>{
+console.log(props)
 
     return (
         <div id="navBarTop">
         <main>
-        <input id="searchBar"></input>
+        <input id="searchBar" onChange={props.getUserInput} ></input>
+        <button></button>
         </main>
         <aside>
             <div>Info</div>

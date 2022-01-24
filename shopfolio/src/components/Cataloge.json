@@ -7,8 +7,16 @@
             "female","male"
         ],
         "sizesOnStock" : [
-      
-        ]
+            {"OneSize":false},
+            {"38":1},
+            {"39":1},
+            {"40":1},
+            {"41":12},
+            {"42":13},
+            {"43":1},
+            {"44":1}
+        ],
+        "img":"./img/airmax.jpg"
     },
     {
         "productName" : "Superstar",
@@ -18,8 +26,16 @@
             "female","male"
         ],
         "sizesOnStock" : [
-     
-        ]
+            {"OneSize":false},
+            {"38":1},
+            {"39":1},
+            {"40":1},
+            {"41":1},
+            {"42":1},
+            {"43":14},
+            {"44":15}
+        ],
+        "img":"./img/superstar.jpg"
     },
     {
         "productName" : "Chucks",
@@ -29,8 +45,16 @@
             "female"
         ],
         "sizesOnStock" : [
-       
-        ]
+            {"OneSize":false},
+            {"38":1},
+            {"39":1},
+            {"40":1},
+            {"41":1},
+            {"42":1},
+            {"43":1},
+            {"44":1}
+        ],
+        "img":"./img/chucks.png"
     },
     {
         "productName" : "Polar",
@@ -48,7 +72,8 @@
             {"XL":3},
             {"XXL":1},
             {"3XL":1}
-        ]
+        ],
+        "img":"./img/polar.jpg"
     },
     {
         "productName" : "Jupiter",
@@ -66,7 +91,8 @@
             {"XL":3},
             {"XXL":1},
             {"3XL":1}
-        ]
+        ],
+        "img":"./img/jupiter.jpg"
     },
     {
         "productName" : "Venus",
@@ -77,14 +103,15 @@
         ],
         "sizesOnStock" : [
             {"OneSize":false},
-            {"XS":5},
-            {"S":5},
+            {"XS":2},
+            {"S":1},
             {"M":5},
-            {"L":3},
+            {"L":31},
             {"XL":3},
             {"XXL":1},
-            {"3XL":1}
-        ]
+            {"3XL":12}
+        ],
+        "img":"./img/venus.jpg"
     },
     {
         "productName" : "dumbbells PRO",
@@ -94,15 +121,10 @@
             "female","male","kids-f","kids-m"
         ],
         "sizesOnStock" : [
-            {"OneSize":false},
-            {"XS":5},
-            {"S":5},
-            {"M":5},
-            {"L":3},
-            {"XL":3},
-            {"XXL":1},
-            {"3XL":1}
-        ]
+            {"OneSize":true},
+            15
+        ],
+        "img":"./img/dumbbells.jpg"
     },
     {
         "productName" : "Hockey Terminator",
@@ -112,14 +134,10 @@
             "female","male","kids-f","kids-m"
         ],
         "sizesOnStock" : [
-            {"OneSize":false},
-            {"XS":5},
-            {"S":5},
-            {"M":5},
-            {"L":3},
-            {"XL":3},
-            {"XXL":1},
-            {"3XL":1}
-        ]
+            {"OneSize":true},
+            1
+        
+        ],
+        "img":"./img/hockey.png"
     }
 ]

@@ -12,5 +12,44 @@
         height:14em;
         width:12em;
         margin:1%;
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+        justify-content: center;
+        img{
+            margin-top:3%;
+            width:10em;
+            max-height:45%;
+            
+        }
+        .productName{
+            margin-top:auto;
+        }
+        .productPrice{
+            margin-top:5%;
+        }
+        
+        footer{
+            margin-bottom:1%;
+            margin-top:auto;
+            display:flex;
+            justify-content: center;
+            width:100%;
+         
+            height:2em;
+            button{
+                background-color:white;
+                border-width:1px;
+            }
+            .addToCartBtn{
+             
+               
+                align-self:center;
+            }
+            .addToFavBtn{
+               
+                border-style:none;
+            }
+        }
     }
 }
