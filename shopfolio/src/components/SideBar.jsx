@@ -1,6 +1,16 @@
-import React from "react"
+import React,{useEffect} from "react"
 
-const SideBar = () => {
+const SideBar = (props) => {
+
+useEffect(() => {
+let elements = document.querySelectorAll("#categoriesSideBar>p")
+for (let i=0;i<elements.length;i++){
+ elements[i].addEventListener("click",props.categoryFilter)
+}
+}, []);
+
+
+
     return(
     <div id="sideBar">
     <div id="categoriesSideBar">

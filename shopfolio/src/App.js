@@ -9,38 +9,56 @@ const [items, setitems] = useState(data);
 const [userInput, setuserInput] = useState("");
 const [filteredData, setfilteredData] = useState([]);
 
+
 const getuserInput = (e) =>{
   setuserInput(e.target.value)
-  getfilteredData();
+  getfilteredData("words");
   }
 
-const getfilteredData = () =>{
-  const userInputLetters = userInput.toLocaleLowerCase().trim();
+const wordFilter = () => {
+  const userInputLetters = userInput.toLocaleLowerCase().trim(); 
   const userInputLength = userInputLetters.length;
-
   let newArray = data.filter((item)=>{
   console.log(item.productName.slice(0,userInputLength))
     const slicedProductName = item.productName.slice(0,userInputLength);
     if (userInput === slicedProductName.toLocaleLowerCase()){
       return item.productName
     } 
-   
+   else return (console.log("filter is empty"))
   })
-  console.log(newArray)
-  setfilteredData(newArray)
+  return newArray
 }
 
 
+const userCategory =(e)=>{
+  e.prevenDefault()
+  console.log(e.target.innerHTML)
+  let newArray = data.filter((item)=>{
+  
+    if (e.target.innerHTML.toLowerCase() === item.productCategorie.toLowerCase()){
+      return item.productName
+    }
+  })
 
+setfilteredData(newArray)
+}
+
+
+const getfilteredData = (filter) =>{
+  if (filter==="words"){
+   let words = wordFilter();
+   setfilteredData(words)}
+ }
   return (
     <div className="App">
     <header id="navBar">
       <p id="companyLogo"> Goodys </p> 
       <NavBar getUserInput={getuserInput}
+      
       />
     </header>
-    <SideBar/>
-    <Products items={ userInput ? filteredData : data}/>
+    <SideBar categoryFilter={userCategory}/>
+    <Products items={ filteredData ? filteredData : items}/>
     </div>
   );
 }
