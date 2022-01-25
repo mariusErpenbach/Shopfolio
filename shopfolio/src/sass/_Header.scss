@@ -1,6 +1,7 @@
 #navBar{
     display:flex;
-  
+    border-style:solid;
+    border-width:1px;
     align-items:center;
     justify-content: center;
     text-align: center;
@@ -9,8 +10,6 @@
         font-size:1.2em;
     }
 #navBarTop{
-
-   
     display:flex;
     margin-left:auto;
     width:88%;
@@ -30,16 +29,42 @@
         }
     }
     aside{
+       
         margin-left:auto;
-        margin-right:2%;
         display:flex;
+        justify-content: center;
+        align-items: center;
         width:30%;
+        flex-wrap:wrap;
+       a:link{
+           text-decoration: none;
+       }
+            
         div{
-            margin:2%;
+            display:flex;
+              justify-content: center;
+             align-items: center;
             cursor: pointer;
+            border-style:solid;
+            border-width:1px;
+            height:2em;
+            min-width:6em;
         }
-        div:hover{
+        a:hover div{
             background-color: rgba(128, 128, 128, 0.288);
         }
+     
+    #shoppingCartNav{
+
     }
+    #shoppingCartHover{
+        display:none;
+    }
+    #shoppingCartNav:hover {
+        #shoppingCartHover{
+        display:block;}
+    }
+   
+    }
+    
 }}

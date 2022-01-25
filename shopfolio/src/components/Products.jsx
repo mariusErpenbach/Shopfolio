@@ -5,12 +5,12 @@ const Products = (props) => {
 
 
     const inventory = props.items.map((item,i)=>(
-            <div className="productBox" key={item.productName}>  
+            <div className="productBox">  
             <img src={item.img} alt={"picture of "+item.productName}></img> 
             <div className="productName">{item.productName}</div>
             <div className="productPrice">{item.price}€</div>
             <footer>
-            <button className="addToCartBtn"> to Cart</button>
+            <button className="addToCartBtn" onClick={props.addToCart} value={[item.productName,item.img,item.price]}> to Cart</button>
             <button className="addToFavBtn"><i className="far fa-star"></i></button>
             </footer>
         </div>
