@@ -5,7 +5,10 @@
         p{
             margin-left:3%;
             width:70%;
-            background-color:rgba(128, 128, 128, 0.281);
+            cursor: pointer;
+        }
+        p:hover{
+            background-color: rgba(128, 128, 128, 0.288);
         }
     }
 }

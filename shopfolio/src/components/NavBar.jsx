@@ -1,12 +1,12 @@
 import React from "react"
 const NavBar = (props) =>{
-console.log(props)
+
 
     return (
         <div id="navBarTop">
         <main>
         <input id="searchBar" onChange={props.getUserInput} ></input>
-        <button></button>
+        <button><i className="fas fa-search"></i></button>
         </main>
         <aside>
             <div>Info</div>

@@ -9,7 +9,6 @@ const [items, setitems] = useState(data);
 const [userInput, setuserInput] = useState("");
 const [filteredData, setfilteredData] = useState([]);
 
-
 const getuserInput = (e) =>{
   setuserInput(e.target.value)
   getfilteredData("words");
@@ -19,7 +18,6 @@ const wordFilter = () => {
   const userInputLetters = userInput.toLocaleLowerCase().trim(); 
   const userInputLength = userInputLetters.length;
   let newArray = data.filter((item)=>{
-  console.log(item.productName.slice(0,userInputLength))
     const slicedProductName = item.productName.slice(0,userInputLength);
     if (userInput === slicedProductName.toLocaleLowerCase()){
       return item.productName
@@ -29,17 +27,12 @@ const wordFilter = () => {
   return newArray
 }
 
-
 const userCategory =(e)=>{
-
-  console.log(e.target.innerHTML)
   let newArray = data.filter((item)=>{
-  
     if (e.target.innerHTML.toLowerCase() === item.productCategorie.toLowerCase()){
       return item.productName
-    }
+    }else return console.log("no filter")
   })
-
 setfilteredData(newArray)
 setuserInput(`${newArray}`)
 }

@@ -15,23 +15,31 @@
     margin-left:auto;
     width:88%;
     main{
-       
+        display:flex;
         width:45%;
         margin-left:3%;
         input{
             height:80%;
             width:100%;
+            margin-right:5%;
+        }
+        button{
+            width:4em;
+            height:3.2em;
+            background-color:rgba(255, 255, 255, 0);
         }
     }
     aside{
         margin-left:auto;
         margin-right:2%;
         display:flex;
-      
-      width:30%;
+        width:30%;
         div{
             margin:2%;
-           
+            cursor: pointer;
+        }
+        div:hover{
+            background-color: rgba(128, 128, 128, 0.288);
         }
     }
 }}

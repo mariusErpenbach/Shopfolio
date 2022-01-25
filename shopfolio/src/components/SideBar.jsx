@@ -7,7 +7,7 @@ let elements = document.querySelectorAll("#categoriesSideBar>p")
 for (let i=0;i<elements.length;i++){
  elements[i].addEventListener("click",props.categoryFilter)
 }
-}, []);
+});
 
 
 
