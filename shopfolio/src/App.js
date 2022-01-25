@@ -31,7 +31,7 @@ const wordFilter = () => {
 
 
 const userCategory =(e)=>{
-  e.prevenDefault()
+
   console.log(e.target.innerHTML)
   let newArray = data.filter((item)=>{
   
@@ -41,6 +41,7 @@ const userCategory =(e)=>{
   })
 
 setfilteredData(newArray)
+setuserInput(`${newArray}`)
 }
 
 
@@ -58,7 +59,7 @@ const getfilteredData = (filter) =>{
       />
     </header>
     <SideBar categoryFilter={userCategory}/>
-    <Products items={ filteredData ? filteredData : items}/>
+    <Products items={ userInput ? filteredData : items}/>
     </div>
   );
 }
