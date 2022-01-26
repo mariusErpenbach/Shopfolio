@@ -1,21 +1,23 @@
-import React,{useEffect} from "react";
+import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 const NavBar = (props) => {
 
-
+const [checkOutSum, setcheckOutSum] = useState(0);
+const [numberOfItems,setnumberOfItems] = useState(0);
   useEffect(() => {
-
-  
   if (props.userItems.length!=0){
   let shoppingCart = document.getElementById("shoppingCartNav")
+  let checkOut = document.getElementById("shoppingCartHover")
   let minibox = document.createElement("div")
   minibox.className = "mini-productBox"
-  shoppingCart.appendChild(minibox)
+  shoppingCart.insertBefore(minibox,checkOut)
   // childs 
   let miniName = document.createElement("p");
   miniName.textContent = props.userItems[0].productName
   minibox.appendChild(miniName)
-  }
+  setcheckOutSum(checkOutSum+props.userItems[0].price)
+  setnumberOfItems(numberOfItems+1)
+}
   },[props.userItems]);
   
 console.log(props.userItems)
@@ -26,6 +28,7 @@ console.log(props.userItems)
         <input id="searchBar" onChange={props.getUserInput}></input>
         <button>
           <i className="fas fa-search"></i>
+      
         </button>
       </main>
       <aside>
@@ -42,9 +45,11 @@ console.log(props.userItems)
         </Link>
         
       
-          <div id="shoppingCartNav">Shopping Cart
-
-          <div id="shoppingCartHover">checkout</div>
+          <div id="shoppingCartNav">Shopping Cart 
+          <br></br>({numberOfItems})
+          <div id="shoppingCartHover">
+          <p>{checkOutSum}€ total</p>
+          <p>checkout</p></div>
           </div>
      
       </aside>

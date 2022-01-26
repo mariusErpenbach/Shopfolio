@@ -1,5 +1,6 @@
 #navBar{
     display:flex;
+    height:5vh;
     border-style:solid;
     border-width:1px;
     align-items:center;
@@ -18,14 +19,13 @@
         width:45%;
         margin-left:3%;
         input{
-            height:80%;
+            height:90%;
             width:100%;
-            margin-right:5%;
         }
         button{
             width:4em;
             height:3.2em;
-            background-color:rgba(255, 255, 255, 0);
+     
         }
     }
     aside{
@@ -35,7 +35,7 @@
         justify-content: center;
         align-items: center;
         width:30%;
-        flex-wrap:wrap;
+     
        a:link{
            text-decoration: none;
        }
@@ -55,24 +55,36 @@
         }
      
     #shoppingCartNav{
-
-        display:flex;
-        flex-direction: column;
-        height:auto;
+        
+        position: relative;
+        display: inline-block;
+        
     }
-    #shoppingCartHover{
+    .mini-productBox{
         display:none;
-    }
-    #shoppingCartNav:hover {
-        #shoppingCartHover{
-        display:block;
-            
-    }
-        .mini-productBox{
-           
+        flex-direction: column;
+        justify-content: center;
+        background-color:gainsboro;
         }
+    #shoppingCartHover{
+        min-width:6em;
+        height:auto;
+        display: none;
+        position: absolute;
     }
    
+   
+
+    #shoppingCartNav:hover{
+        .mini-productBox{
+            display:flex;
+            }
+        #shoppingCartHover{
+            display:block;
+            background-color: ghostwhite;
+        }
+       
+    }
     }
     
 }}
