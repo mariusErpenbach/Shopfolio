@@ -62,9 +62,14 @@
     }
     .mini-productBox{
         display:none;
-        flex-direction: column;
+        height:auto;
+        flex-direction: row;
         justify-content: center;
         background-color:gainsboro;
+        button{
+            width:2em;
+            height:2em;
+        }
         }
     #shoppingCartHover{
         min-width:6em;

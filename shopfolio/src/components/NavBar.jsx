@@ -4,23 +4,36 @@ const NavBar = (props) => {
 
 const [checkOutSum, setcheckOutSum] = useState(0);
 const [numberOfItems,setnumberOfItems] = useState(0);
-  useEffect(() => {
+
+const handleRemoveBtnClick = (e) =>{
+  console.log(e.target)
+}
+
+  useEffect(() => { // ShoppingCart Update effect
   if (props.userItems.length!=0){
   let shoppingCart = document.getElementById("shoppingCartNav")
   let checkOut = document.getElementById("shoppingCartHover")
   let minibox = document.createElement("div")
   minibox.className = "mini-productBox"
+  minibox.id = props.userItems[0].productName + numberOfItems + "mini"
   shoppingCart.insertBefore(minibox,checkOut)
+
   // childs 
   let miniName = document.createElement("p");
   miniName.textContent = props.userItems[0].productName
   minibox.appendChild(miniName)
+  let removeBtn = document.createElement("button")
+  removeBtn.addEventListener("click",handleRemoveBtnClick)
+
+  // <i class="fas fa-times"></i>
+  minibox.appendChild(removeBtn)
+  // update states
   setcheckOutSum(checkOutSum+props.userItems[0].price)
   setnumberOfItems(numberOfItems+1)
 }
   },[props.userItems]);
   
-console.log(props.userItems)
+
 
   return (
     <div id="navBarTop">
