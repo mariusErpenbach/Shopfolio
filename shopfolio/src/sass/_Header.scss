@@ -56,13 +56,21 @@
      
     #shoppingCartNav{
 
+        display:flex;
+        flex-direction: column;
+        height:auto;
     }
     #shoppingCartHover{
         display:none;
     }
     #shoppingCartNav:hover {
         #shoppingCartHover{
-        display:block;}
+        display:block;
+            
+    }
+        .mini-productBox{
+           
+        }
     }
    
     }

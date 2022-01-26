@@ -9,7 +9,7 @@ const Shop = () => {
     const [items, setitems] = useState(data);
     const [userInput, setuserInput] = useState("");
     const [filteredData, setfilteredData] = useState([]);
-    const [shoppingCartItems, setshoppingCartItems] = useState([]);
+    const [shoppingCartItems, setshoppingCartItems] = useState("");
 
 
     const getuserInput = (e) =>{
@@ -53,12 +53,11 @@ const Shop = () => {
                 return item
             }
          })
+         setshoppingCartItems(newItem)
      }
 
      const getshoppingCartItem = (e) =>{
-        console.log(e.target.value)
-      
-        
+      addItemToCart(e.target.value)    
      }
 
 
@@ -66,7 +65,9 @@ const Shop = () => {
      return(<div id="shop">
         <header id="navBar">
         <p id="companyLogo"> Goodys </p> 
-        <NavBar getUserInput={getuserInput}/>
+        <NavBar getUserInput={getuserInput}
+                userItems={shoppingCartItems}
+        />
       </header>
       <SideBar categoryFilter={userCategory}/>
       <Products items={ userInput ? filteredData : items}

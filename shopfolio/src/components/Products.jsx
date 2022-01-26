@@ -10,7 +10,7 @@ const Products = (props) => {
             <div className="productName">{item.productName}</div>
             <div className="productPrice">{item.price}€</div>
             <footer>
-            <button className="addToCartBtn" onClick={props.addToCart} value={[item.productName,item.img,item.price]}> to Cart</button>
+            <button className="addToCartBtn" onClick={props.addToCart} value={[item.productName]}> to Cart</button>
             <button className="addToFavBtn"><i className="far fa-star"></i></button>
             </footer>
         </div>
