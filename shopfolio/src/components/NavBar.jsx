@@ -6,7 +6,12 @@ const [checkOutSum, setcheckOutSum] = useState(0);
 const [numberOfItems,setnumberOfItems] = useState(0);
 
 const handleRemoveBtnClick = (e) =>{
-  console.log(e.target)
+
+let parent = document.getElementById(e.target.parentElement.id)
+let grandparent = document.getElementById(parent.parentElement.id)
+grandparent.removeChild(parent) 
+setnumberOfItems(document.getElementsByClassName("mini-productBox").length)
+
 }
 
   useEffect(() => { // ShoppingCart Update effect
@@ -27,9 +32,12 @@ const handleRemoveBtnClick = (e) =>{
 
   // <i class="fas fa-times"></i>
   minibox.appendChild(removeBtn)
-  // update states
+   // update states
   setcheckOutSum(checkOutSum+props.userItems[0].price)
-  setnumberOfItems(numberOfItems+1)
+  
+  setnumberOfItems(document.getElementsByClassName("mini-productBox").length)
+ 
+  
 }
   },[props.userItems]);
   
