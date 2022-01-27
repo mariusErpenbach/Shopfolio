@@ -5,13 +5,22 @@ const NavBar = (props) => {
 const [checkOutSum, setcheckOutSum] = useState(0);
 const [numberOfItems,setnumberOfItems] = useState(0);
 
+const calcSum = (elements) => {
+let newSum = 0
+  for (let i=0;i<elements.length;i++){
+    newSum += elements[i].value
+  }
+  return newSum
+}
+
 const handleRemoveBtnClick = (e) =>{
 
 let parent = document.getElementById(e.target.parentElement.id)
 let grandparent = document.getElementById(parent.parentElement.id)
 grandparent.removeChild(parent) 
+// update states
 setnumberOfItems(document.getElementsByClassName("mini-productBox").length)
-
+setcheckOutSum(calcSum(document.getElementsByClassName("mini-productBox")))
 }
 
   useEffect(() => { // ShoppingCart Update effect
@@ -20,6 +29,7 @@ setnumberOfItems(document.getElementsByClassName("mini-productBox").length)
   let checkOut = document.getElementById("shoppingCartHover")
   let minibox = document.createElement("div")
   minibox.className = "mini-productBox"
+  minibox.value = props.userItems[0].price
   minibox.id = props.userItems[0].productName + numberOfItems + "mini"
   shoppingCart.insertBefore(minibox,checkOut)
 
@@ -29,14 +39,16 @@ setnumberOfItems(document.getElementsByClassName("mini-productBox").length)
   minibox.appendChild(miniName)
   let removeBtn = document.createElement("button")
   removeBtn.addEventListener("click",handleRemoveBtnClick)
-
+  let removeSymbol = document.createElement("i")
+  removeSymbol.className = "fas fa-times";
+  removeBtn.appendChild(removeSymbol)
   // <i class="fas fa-times"></i>
   minibox.appendChild(removeBtn)
    // update states
-  setcheckOutSum(checkOutSum+props.userItems[0].price)
+
   
   setnumberOfItems(document.getElementsByClassName("mini-productBox").length)
- 
+  setcheckOutSum(calcSum(document.getElementsByClassName("mini-productBox")))
   
 }
   },[props.userItems]);
