@@ -11,7 +11,7 @@ const Products = (props) => {
             <div className="productPrice">{item.price}€</div>
             <footer>
             <button className="addToCartBtn" onClick={props.addToCart} value={[item.productName]}> to Cart</button>
-            <button className="addToFavBtn"><i className="far fa-star"></i></button>
+            <button className="addToFavBtn" onClick={props.addToWishList} value={[item.productName]} ><i className="far fa-star" key={item.productName} onClick={props.addToWishList}></i></button>
             </footer>
         </div>
         

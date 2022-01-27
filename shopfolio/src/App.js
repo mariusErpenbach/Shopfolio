@@ -7,7 +7,7 @@ import {
 import Shop from "./components/Shop";
 import Info from "./components/Info";
 import MyAccount from "./components/MyAccount";
-import Wishlist from "./components/Wishlist";
+import CheckOut from "./components/CheckOut";
 function App() {
   return (
     <div className="App">
@@ -16,7 +16,7 @@ function App() {
     <Route path="/" element={<Shop/>}> </Route>
     <Route path="/info" element={<Info/>}> </Route>
     <Route path="/myAccount" element={<MyAccount/>}></Route>
-    <Route path="/Wishlist" element ={<Wishlist/>}></Route>
+    <Route path="/checkOut" element={<CheckOut/>}></Route>
     </Routes>
     </Router>
     </div>

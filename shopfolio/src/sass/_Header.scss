@@ -50,15 +50,44 @@
             height:2em;
             min-width:6em;
         }
-        a:hover div{
-            background-color: rgba(128, 128, 128, 0.288);
-        }
      
-    #shoppingCartNav{
-        
+    #wishlist{
+ 
         position: relative;
         display: inline-block;
-        
+    }
+    #wishlistHover{
+        min-width:6em;
+        height:auto;
+        display: none;
+        position: absolute;
+    }
+    .mini-wishBox{
+        display:none;
+        height:auto;
+        flex-direction: row;
+        justify-content: center;
+        background-color:gainsboro;
+        button{
+            width:2em;
+            height:2em;
+            i{
+                pointer-events: none
+            }
+        }
+        }
+    #wishlist:hover{
+        #wishlistHover{
+            display:block;
+            background-color: ghostwhite;
+        }
+        .mini-wishBox{
+            display:flex;
+        }
+    }
+    #shoppingCartNav{
+        position: relative;
+        display: inline-block;
     }
     .mini-productBox{
         display:none;

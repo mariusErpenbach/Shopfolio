@@ -10,7 +10,7 @@ const Shop = () => {
     const [userInput, setuserInput] = useState("");
     const [filteredData, setfilteredData] = useState([]);
     const [shoppingCartItems, setshoppingCartItems] = useState("");
-
+    const [wishListItem, setwishListItem] = useState("");
 
     const getuserInput = (e) =>{
       setuserInput(e.target.value)
@@ -60,6 +60,23 @@ const Shop = () => {
       addItemToCart(e.target.value)    
      }
 
+     const addItemToWishList =(itemName) =>{
+      let newItem = data.filter((item)=>{
+        if (itemName===item.productName){
+            return item
+        }
+     })
+       setwishListItem(newItem)
+     }
+
+     const getWishlListItem = (e) =>{
+       addItemToWishList(e.target.parentElement.value)
+      // highlight clicked star and make it not clickable again
+      e.target.style += "background-color:yellow;" 
+   
+      e.target.id= e.target.parentElement.value +"highlight"
+      console.log(e.target)
+     }
 
 
      return(<div id="shop">
@@ -67,11 +84,12 @@ const Shop = () => {
         <p id="companyLogo"> Goodys </p> 
         <NavBar getUserInput={getuserInput}
                 userItems={shoppingCartItems}
-        />
+                userWishes={wishListItem}        />
       </header>
       <SideBar categoryFilter={userCategory}/>
       <Products items={ userInput ? filteredData : items}
                 addToCart={getshoppingCartItem}
+                addToWishList={getWishlListItem}
       />
       </div>
      )
