@@ -3,17 +3,17 @@ import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import Products from "./Products";
 import data from "./Cataloge.json";
-import CheckOut from "./CheckOut"
+
 const Shop = () => {
   const [items, setitems] = useState(data);
   const [userInput, setuserInput] = useState("");
   const [filteredData, setfilteredData] = useState([]);
   const [shoppingCartItem, setshoppingCartItem] = useState("");
+  const [wishListItems, setwishListItems] = useState([]);
   const getuserInput = (e) => {
     setuserInput(e.target.value);
     getfilteredData("words");
   };
-
 
   const wordFilter = () => {
     const userInputLetters = userInput.toLocaleLowerCase().trim();
@@ -60,18 +60,21 @@ const Shop = () => {
     setshoppingCartItem(newItem);
   };
 
+  const newWishItem = (e) => {
+   setwishListItems((oldArray) => [...oldArray, e.target.parentElement.value])
+  }
 
   return (
     <div id="shop">
       <header id="navBar">
         <p id="companyLogo"> Goodys </p>
-        <NavBar getUserInput={getuserInput} userItems={shoppingCartItem} />
+        <NavBar getUserInput={getuserInput} userItems={shoppingCartItem} wishListItems={wishListItems}  />
       </header>
       <SideBar categoryFilter={userCategory} />
       <Products
         items={userInput ? filteredData : items}
         addToCart={getshoppingCartItem}
-    
+        newWishItem={newWishItem}
       />
     </div>
   );

@@ -5,9 +5,15 @@ const NavBar = (props) => {
   const [checkOutSum, setcheckOutSum] = useState(0);
   const [numberOfItems, setnumberOfItems] = useState(0);
   const [checkOutCart, setcheckOutCart] = useState([]);
+
+  const miniWishList = props.wishListItems.map((item,i)=>(
+    <div className="mini-wishBox">{item}</div>
+  ))
+
   useEffect(() => {
     // ShoppingCart Update effect
     if (props.userItems.length != 0) {
+      
       let shoppingCart = document.getElementById("shoppingCartNav");
       let checkOut = document.getElementById("shoppingCartHover");
       let minibox = document.createElement("div");
@@ -70,6 +76,7 @@ const NavBar = (props) => {
         </Link>
         <div id="wishlist">
           Wishlist
+          {miniWishList}
           <br></br>()
           <div id="wishlistHover">
             <p>full view</p>

@@ -18,7 +18,7 @@ const Products = (props) => {
           <i
             className="far fa-star"
             key={item.productName}
-            onClick={props.addToWishList}
+            onClick={props.newWishItem}
           ></i>
         </button>
       </footer>

@@ -16,7 +16,7 @@ const CheckOut =() => {
         <h1>Your Cart</h1>
         <div>{showUserCart}</div>
 
-        <button onClick={alert("thank you for trying my shop")}>buy now</button>
+        <button>buy now</button>
         </div>
     )
 }
