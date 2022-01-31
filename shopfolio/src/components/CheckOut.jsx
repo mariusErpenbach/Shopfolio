@@ -3,13 +3,20 @@ import { useLocation } from "react-router-dom";
 const CheckOut =() => {
 
     let data = useLocation()
-const tryit = () => {
-  
-    console.log(data.state)}
+
+
+
+    const showUserCart = data.state.checkOutCart.map((item,i)=>(
+        <div >{item[0].price}€ - {item[0].productName}</div>
+    ))
+    
+    
     return(
         <div id="CheckOut">
-        hi kids
-        <button onClick={tryit}>tryy</button>
+        <h1>Your Cart</h1>
+        <div>{showUserCart}</div>
+
+        <button onClick={alert("thank you for trying my shop")}>buy now</button>
         </div>
     )
 }

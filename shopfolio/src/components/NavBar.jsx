@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const NavBar = (props) => {
   const [checkOutSum, setcheckOutSum] = useState(0);
   const [numberOfItems, setnumberOfItems] = useState(0);
-
+  const [checkOutCart, setcheckOutCart] = useState([]);
   useEffect(() => {
     // ShoppingCart Update effect
     if (props.userItems.length != 0) {
@@ -32,6 +32,7 @@ const NavBar = (props) => {
       setcheckOutSum(
         calcSum(document.getElementsByClassName("mini-productBox"))
       );
+      setcheckOutCart((oldArray=>[...oldArray,props.userItems]))
     }
   },[props.userItems]);
 
@@ -79,7 +80,7 @@ const NavBar = (props) => {
           <br></br>({numberOfItems})
           <div id="shoppingCartHover">
             <p>{checkOutSum}€ total</p>
-           <Link to="/checkOut"  state={{ hi:'finaly' }}> checkout</Link>
+           <Link to="/checkOut"  state={{ checkOutCart:checkOutCart }}> checkout</Link>
           </div>
         </div>
       </aside>
