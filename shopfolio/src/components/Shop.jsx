@@ -61,7 +61,20 @@ const Shop = () => {
   };
 
   const newWishItem = (e) => {
+    // check if Wishlist already includes the new Wishitem
+    if(wishListItems.includes(e.target.parentElement.value) != true){ 
    setwishListItems((oldArray) => [...oldArray, e.target.parentElement.value])
+      e.target.style = "background-color:yellow;"
+  } else {
+    console.log(wishListItems)
+    let newArray = wishListItems.filter((item)=>{
+      if (item!=e.target.parentElement.value){return item}
+      else 
+      e.target.style ="background-color:none"
+      console.log("item removed")
+    })
+    setwishListItems(newArray)
+  }
   }
 
   return (
