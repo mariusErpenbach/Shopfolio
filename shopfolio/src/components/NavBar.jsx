@@ -6,7 +6,6 @@ const NavBar = (props) => {
   const [numberOfItems, setnumberOfItems] = useState(0);
   const [checkOutCart, setcheckOutCart] = useState([]);
 
-
   useEffect(() => {
     // ShoppingCart Update effect
     if (props.userItems.length != 0) {
@@ -46,6 +45,7 @@ const NavBar = (props) => {
     // update states
     setnumberOfItems(document.getElementsByClassName("mini-productBox").length);
     setcheckOutSum(calcSum(document.getElementsByClassName("mini-productBox")));
+    console.log("function fired")
   };
 
   const calcSum = (elements) => {
@@ -56,10 +56,12 @@ const NavBar = (props) => {
     return newSum;
   };
 
+ 
+
   const miniWishList = props.wishListItems.map((item,i)=>(
-    <div className="mini-wishBox">{item}
-    <button>
-    <i className="fas fa-times"></i>
+    <div className="mini-wishBox" key={i} value={item} >{item}
+    <button onClick={props.removeWish}>
+    <i className="fas fa-times" ></i>
     </button></div>
   ))
 
@@ -82,7 +84,7 @@ const NavBar = (props) => {
         <div id="wishlist">
           Wishlist
           
-          <br></br>()
+          <br></br>({props.wishListItems ? props.wishListItems.length:0})
           <div id="wishlistHover">
           {miniWishList}
             <p>full view</p>

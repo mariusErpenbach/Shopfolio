@@ -64,11 +64,11 @@ const Shop = () => {
     // check if Wishlist already includes the new Wishitem
     if(wishListItems.includes(e.target.parentElement.value) != true){ 
    setwishListItems((oldArray) => [...oldArray, e.target.parentElement.value])
-      e.target.style = "background-color:yellow;"
+    
   } else {
     console.log(wishListItems)
     let newArray = wishListItems.filter((item)=>{
-      if (item!=e.target.parentElement.value){return item}
+      if (item!==e.target.parentElement.value){return item}
       else 
       e.target.style ="background-color:none"
       console.log("item removed")
@@ -76,12 +76,24 @@ const Shop = () => {
     setwishListItems(newArray)
   }
   }
+  const removeWish = (e) =>{
+    let newArray = wishListItems.filter((item)=>{
+      if (item!==e.target.parentElement.getAttribute("value")){return item}
+      else 
+      console.log("item removed")
+    })
+    setwishListItems(newArray)
+   }
 
   return (
     <div id="shop">
       <header id="navBar">
         <p id="companyLogo"> Goodys </p>
-        <NavBar getUserInput={getuserInput} userItems={shoppingCartItem} wishListItems={wishListItems}  />
+        <NavBar 
+        getUserInput={getuserInput} 
+        userItems={shoppingCartItem} 
+        wishListItems={wishListItems}
+        removeWish={removeWish}  />
       </header>
       <SideBar categoryFilter={userCategory} />
       <Products
