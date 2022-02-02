@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NavBar = (props) => {
 
-  const [numberOfItems, setnumberOfItems] = useState(0);
+  
   const [checkOutCart, setcheckOutCart] = useState([]);
   const [checkOutSum, setcheckOutSum] = useState(0);
 
@@ -21,6 +21,12 @@ console.log(props.shoppingCartItems)
     <i className="fas fa-times" ></i>
     </button></div>
   ))
+
+const totalSum = props.shoppingCartItems.reduce(
+  ( accumulator, currentValue ) => accumulator + parseInt(currentValue[1]),
+  0
+);
+
 
   return (
     <div id="navBarTop">
@@ -48,9 +54,9 @@ console.log(props.shoppingCartItems)
         </div>
         <div id="shoppingCartNav">
           Shopping Cart
-          <br></br>({numberOfItems})
+          <br></br>({props.shoppingCartItems ? props.shoppingCartItems.length:0})
           <div id="shoppingCartHover">
-            <p>{checkOutSum}€ total</p>
+            <p>{totalSum}€ total</p>
             {miniCartList}
            <Link to="/checkOut"  state={{ checkOutCart:checkOutCart }}> checkout</Link>
           </div>
