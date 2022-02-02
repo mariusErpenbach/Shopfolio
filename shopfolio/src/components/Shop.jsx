@@ -8,7 +8,7 @@ const Shop = () => {
   const [items, setitems] = useState(data);
   const [userInput, setuserInput] = useState("");
   const [filteredData, setfilteredData] = useState([]);
-  const [shoppingCartItem, setshoppingCartItem] = useState("");
+  const [shoppingCartItems, setshoppingCartItems] = useState([]);
   const [wishListItems, setwishListItems] = useState([]);
   const getuserInput = (e) => {
     setuserInput(e.target.value);
@@ -43,28 +43,34 @@ const Shop = () => {
     if (filter === "words") {
       let words = wordFilter();
       setfilteredData(words);
-    }
+    } else console.log("nothing found with getFilteredData")
   };
 
 
-  const getshoppingCartItem = (e) => {
-    addItemToCart(e.target.value);
-  };
+  const addItemToCart = (e) => {
+    let newArray = [e.target.getAttribute("value"),e.target.getAttribute("price")]
+    setshoppingCartItems((oldArray=>[...oldArray,newArray]))
+    console.log(shoppingCartItems)
+    // setshoppingCartItems((oldArray)=>[...oldArray,e.target])
+  }
+  const removeCartItem = (e) =>{
+    let elementRemoved = false;
+    let newArray = shoppingCartItems.filter((item)=>{
+        if (item[0]==e.target.parentElement.getAttribute("value")){
+          if(elementRemoved===false){ return console.log("element removed")}
+          elementRemoved = true;
+          return item
+        }
+        return item
+    })
+    setshoppingCartItems(newArray)
+  }
 
-  const addItemToCart = (itemName) => {
-    let newItem = data.filter((item) => {
-      if (itemName === item.productName) {
-        return item;
-      }
-    });
-    setshoppingCartItem(newItem);
-  };
 
   const newWishItem = (e) => {
     // check if Wishlist already includes the new Wishitem
     if(wishListItems.includes(e.target.parentElement.value) != true){ 
    setwishListItems((oldArray) => [...oldArray, e.target.parentElement.value])
-    
   } else {
     console.log(wishListItems)
     let newArray = wishListItems.filter((item)=>{
@@ -91,14 +97,17 @@ const Shop = () => {
         <p id="companyLogo"> Goodys </p>
         <NavBar 
         getUserInput={getuserInput} 
-        userItems={shoppingCartItem} 
+        shoppingCartItems={shoppingCartItems}
+        removeCartItem={removeCartItem}
         wishListItems={wishListItems}
-        removeWish={removeWish}  />
+        removeWish={removeWish}  
+
+        />
       </header>
       <SideBar categoryFilter={userCategory} />
       <Products
         items={userInput ? filteredData : items}
-        addToCart={getshoppingCartItem}
+        addItemToCart={addItemToCart}
         newWishItem={newWishItem}
       />
     </div>

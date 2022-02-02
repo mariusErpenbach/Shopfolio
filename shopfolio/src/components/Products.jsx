@@ -9,8 +9,9 @@ const Products = (props) => {
       <footer>
         <button
           className="addToCartBtn"
-          onClick={props.addToCart}
-          value={[item.productName]}
+          onClick={props.addItemToCart}
+          value={item.productName}
+          price={item.price}
         >
           to Cart
         </button>
