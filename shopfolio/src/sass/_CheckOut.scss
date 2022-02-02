@@ -1,0 +1,20 @@
+#CheckOut {
+
+  #showUserCart {
+    .checkout-productBox {
+      display: flex;
+      header {
+        .checkout-productImg {
+          height: 4em;
+        }
+      }
+      aside {
+      }
+      footer {
+      }
+    }
+  }
+  #buyButton{
+      background-color: green;
+  }
+}

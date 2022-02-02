@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 const NavBar = (props) => {
 
   
-  const [checkOutCart, setcheckOutCart] = useState([]);
-  const [checkOutSum, setcheckOutSum] = useState(0);
+
 
 
   const miniWishList = props.wishListItems.map((item,i)=>(
@@ -14,7 +13,7 @@ const NavBar = (props) => {
     <i className="fas fa-times" ></i>
     </button></div>
   ))
-console.log(props.shoppingCartItems)
+
   const miniCartList = props.shoppingCartItems.map((item,i)=>(
     <div className="mini-productBox" key={i} value={item[0]}>{item}
     <button onClick={props.removeCartItem}>
@@ -58,7 +57,7 @@ const totalSum = props.shoppingCartItems.reduce(
           <div id="shoppingCartHover">
             <p>{totalSum}€ total</p>
             {miniCartList}
-           <Link to="/checkOut"  state={{ checkOutCart:checkOutCart }}> checkout</Link>
+           <Link to="/checkOut"  state={{ checkOutItems:props.checkOutItems}}> checkout</Link>
           </div>
         </div>
       </aside>

@@ -10,6 +10,8 @@ const Shop = () => {
   const [filteredData, setfilteredData] = useState([]);
   const [shoppingCartItems, setshoppingCartItems] = useState([]);
   const [wishListItems, setwishListItems] = useState([]);
+  const [checkOutItems, setcheckOutItems] = useState([]);
+  
   const getuserInput = (e) => {
     setuserInput(e.target.value);
     getfilteredData("words");
@@ -51,8 +53,13 @@ const Shop = () => {
     let newArray = [e.target.getAttribute("value"),e.target.getAttribute("price")]
     setshoppingCartItems((oldArray=>[...oldArray,newArray]))
     console.log(shoppingCartItems)
-    // setshoppingCartItems((oldArray)=>[...oldArray,e.target])
+
+    let newCheckOutCart = data.filter((item)=>{
+      if (item.productName == e.target.getAttribute("value")){return item}
+    })
+    setcheckOutItems((oldArray) => [...oldArray, newCheckOutCart])
   }
+
   const removeCartItem = (e) =>{
     let elementRemoved = false;
     let newArray = shoppingCartItems.filter((item)=>{
@@ -101,7 +108,7 @@ const Shop = () => {
         removeCartItem={removeCartItem}
         wishListItems={wishListItems}
         removeWish={removeWish}  
-
+        checkOutItems={checkOutItems}
         />
       </header>
       <SideBar categoryFilter={userCategory} />

@@ -6,17 +6,30 @@ const CheckOut =() => {
 
 
 
-    const showUserCart = data.state.checkOutCart.map((item,i)=>(
-        <div >{item[0].price}€ - {item[0].productName}</div>
+    const showUserCart = data.state.checkOutItems.map((item,i)=>(
+    <div className="checkout-productBox" key={item[0].productName+i}>
+    <header>
+    <img className="checkout-productImg" src={item[0].img} alt={"picture of "+item[0].productName}></img>
+    </header>
+    <aside>
+    <p className="checkout-productBoxName">{item[0].productName}</p>
+    <div className="checkout-productPrice">{item[0].price}€</div>
+    </aside>
+    <footer>
+        <button>X</button>
+    </footer>
+    </div>
     ))
     
+    const totalCheckOutSum = data.state.checkOutItems.reduce(
+        (acc, curr) => acc + parseInt(curr[0].price),0
+    )
     
     return(
         <div id="CheckOut">
-        <h1>Your Cart</h1>
-        <div>{showUserCart}</div>
-
-        <button>buy now</button>
+        <div id="showUserCart"><h1>Your Cart</h1>{showUserCart}</div>
+        <div id="totalCheckOutSum">{totalCheckOutSum}€</div>
+        <button id="buyButton">buy now</button>
         </div>
     )
 }
