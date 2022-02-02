@@ -5,7 +5,7 @@ const NavBar = (props) => {
 
   
 
-
+let remover = props.removeCartItem;
 
   const miniWishList = props.wishListItems.map((item,i)=>(
     <div className="mini-wishBox" key={i} value={item} >{item}
@@ -57,7 +57,10 @@ const totalSum = props.shoppingCartItems.reduce(
           <div id="shoppingCartHover">
             <p>{totalSum}€ total</p>
             {miniCartList}
-           <Link to="/checkOut"  state={{ checkOutItems:props.checkOutItems}}> checkout</Link>
+            <Link to="/checkOut"
+                state={{checkOutItems:props.checkOutItems}}>
+                checkout
+                </Link>
           </div>
         </div>
       </aside>

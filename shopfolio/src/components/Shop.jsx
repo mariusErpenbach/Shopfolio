@@ -61,6 +61,7 @@ const Shop = () => {
   }
 
   const removeCartItem = (e) =>{
+    console.log("function fired")
     let elementRemoved = false;
     let newArray = shoppingCartItems.filter((item)=>{
         if (item[0]==e.target.parentElement.getAttribute("value")){
@@ -70,6 +71,16 @@ const Shop = () => {
         }
         return item
     })
+    let checkOutUpdated =false;
+    let newCheckOutCart = checkOutItems.filter((item)=>{
+      if (item[0].productName==e.target.parentElement.getAttribute("value")){
+        if(checkOutUpdated===false){ return console.log("checkOutelement removed")}
+        checkOutUpdated= true;
+        return item
+      }
+      return item
+    })
+    setcheckOutItems(newCheckOutCart)
     setshoppingCartItems(newArray)
   }
 
