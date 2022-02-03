@@ -7,73 +7,73 @@ import data from "./Cataloge.json";
 const Shop = () => {
   const [items, setitems] = useState(data);
   const [userInput, setuserInput] = useState("");
-  const [filteredData, setfilteredData] = useState([]);
+  const [filteredData, setfilteredData] = useState("");
   const [shoppingCartItems, setshoppingCartItems] = useState([]);
   const [wishListItems, setwishListItems] = useState([]);
   const [checkOutItems, setcheckOutItems] = useState([]);
   
   const getuserInput = (e) => {
     setuserInput(e.target.value);
-    getfilteredData("words");
+    getfilteredData();
   };
+
+
+const clearFilter = () =>{
+  setuserInput("")
+  setfilteredData("");
+}
+
 
   const wordFilter = () => {
     const userInputLetters = userInput.toLocaleLowerCase().trim();
     const userInputLength = userInputLetters.length;
     let newArray = data.filter((item) => {
       const slicedProductName = item.productName.slice(0, userInputLength);
-      if (userInput === slicedProductName.toLocaleLowerCase()) {
-        return item.productName;
-      } else return console.log("filter is empty");
+      return userInput === slicedProductName.toLocaleLowerCase()
     });
     return newArray;
   };
 
   const userCategory = (e) => {
     let newArray = data.filter((item) => {
-      if (
-        e.target.innerHTML.toLowerCase() === item.productCategorie.toLowerCase()
-      ) {
-        return item.productName;
-      } else return console.log("no filter");
+     
+      return  e.target.innerHTML.toLowerCase() === item.productCategorie.toLowerCase()
+      
     });
     setfilteredData(newArray);
-    setuserInput(`${newArray}`);
+    setuserInput("1")
   };
 
-  const getfilteredData = (filter) => {
-    if (filter === "words") {
+  const getfilteredData = () => {
       let words = wordFilter();
       setfilteredData(words);
-    } else console.log("nothing found with getFilteredData")
   };
 
 
   const addItemToCart = (e) => {
     let newArray = [e.target.getAttribute("value"),e.target.getAttribute("price")]
     setshoppingCartItems((oldArray=>[...oldArray,newArray]))
-    console.log(shoppingCartItems)
-
     let newCheckOutCart = data.filter((item)=>{
-      if (item.productName == e.target.getAttribute("value")){return item}
+      return item.productName === e.target.getAttribute("value")
     })
+
     setcheckOutItems((oldArray) => [...oldArray, newCheckOutCart])
   }
 
   const removeCartItem = (e) =>{
-    console.log("function fired")
+
     let elementRemoved = false;
     let newArray = shoppingCartItems.filter((item)=>{
-        if (item[0]==e.target.parentElement.getAttribute("value")){
+        if (item[0]===e.target.parentElement.getAttribute("value")){
           if(elementRemoved===false){ return console.log("element removed")}
           elementRemoved = true;
           return item
         }
         return item
     })
-    let checkOutUpdated =false;
-    let newCheckOutCart = checkOutItems.filter((item)=>{
-      if (item[0].productName==e.target.parentElement.getAttribute("value")){
+    let checkOutUpdated = false;
+    let newCheckOutCart = checkOutItems.filter((item)=>{ 
+      if (item[0].productName===e.target.parentElement.getAttribute("value")){
         if(checkOutUpdated===false){ return console.log("checkOutelement removed")}
         checkOutUpdated= true;
         return item
@@ -87,10 +87,9 @@ const Shop = () => {
 
   const newWishItem = (e) => {
     // check if Wishlist already includes the new Wishitem
-    if(wishListItems.includes(e.target.parentElement.value) != true){ 
+    if(wishListItems.includes(e.target.parentElement.value) !== true){ 
    setwishListItems((oldArray) => [...oldArray, e.target.parentElement.value])
    e.target.style = "background-color:yellow;"
-
   } else {
     console.log(wishListItems)
     let newArray = wishListItems.filter((item)=>{
@@ -124,7 +123,8 @@ const Shop = () => {
         checkOutItems={checkOutItems}
         />
       </header>
-      <SideBar categoryFilter={userCategory} />
+      <SideBar categoryFilter={userCategory}
+      clearFilter={clearFilter} />
       <Products
         items={userInput ? filteredData : items}
         addItemToCart={addItemToCart}

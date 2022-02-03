@@ -2,25 +2,21 @@ import React,{useEffect} from "react"
 
 const SideBar = (props) => {
 
-useEffect(() => {
-let elements = document.querySelectorAll("#categoriesSideBar>p")
-for (let i=0;i<elements.length;i++){
- elements[i].addEventListener("click",props.categoryFilter)
-}
-});
+
 
 
 
     return(
     <div id="sideBar">
     <div id="categoriesSideBar">
-      <p>Woman</p>
-      <p>Man</p>
-      <p>Kids</p>
-      <p>Sport</p>
-      <p>Shoes</p>
-      <p>Home Goods</p>
-      <p>Sale%</p>
+      <p onClick={props.categoryFilter}>Woman</p>
+      <p onClick={props.categoryFilter}>Man</p>
+      <p onClick={props.categoryFilter}>Kids</p>
+      <p onClick={props.categoryFilter}>Sport</p>
+      <p onClick={props.categoryFilter}>Shoes</p>
+      <p onClick={props.categoryFilter}>Home Goods</p>
+      <p onClick={props.categoryFilter}>Sale%</p>
+      <p onClick={props.clearFilter}> reset </p>
     </div>
   </div>)
 }
