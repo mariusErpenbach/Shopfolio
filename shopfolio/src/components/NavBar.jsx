@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import LoginForm from "./LoginForm";
 
 const NavBar = (props) => {
 
-  
+const loginPopUp = () => {
+    let element = document.querySelector("#loginForm")
+    if(element.style.display != "flex")
+    element.style.display = "flex";
+    else {
+      element.style.display = "none";
+    }
+}
 
 let remover = props.removeCartItem;
 
@@ -35,23 +43,24 @@ const totalSum = props.shoppingCartItems.reduce(
           <i className="fas fa-search"></i>
         </button>
       </main>
-      <aside>
-        <Link to="/info">
-          <div>Info</div>
-        </Link>
-        <Link to="/myAccount">
-          <div>My Account</div>
-        </Link>
-        <div id="wishlist">
+      <aside id="navBarTopRight">
+        
+          <div class="navBarButton"><Link to="/info" >Info </Link></div>
+
+          <div class="navBarButton" id="myAccount"><p onClick={loginPopUp}>my<br/> Account</p>
+          <br/>
+          <LoginForm/>
+          </div>
+          <div class="navBarButton" id="wishlist">
           Wishlist
-          
-          <br></br>({props.wishListItems ? props.wishListItems.length:0})
+          <br/>
+          ({props.wishListItems ? props.wishListItems.length:0})
           <div id="wishlistHover">
           {miniWishList}
             <p>full view</p>
           </div>
         </div>
-        <div id="shoppingCartNav">
+        <div class="navBarButton" id="shoppingCartNav" >
           Shopping Cart
           <br></br>({props.shoppingCartItems ? props.shoppingCartItems.length:0})
           <div id="shoppingCartHover">

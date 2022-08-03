@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import Products from "./Products";
 import data from "./Cataloge.json";
+import LoginForm from "./LoginForm";
 
 const Shop = () => {
   const [items, setitems] = useState(data);

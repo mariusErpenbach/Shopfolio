@@ -1,13 +1,12 @@
 #navBar{
     display:flex;
     height:5vh;
-    border-style:solid;
-    border-width:1px;
     align-items:center;
     justify-content: center;
     text-align: center;
+    
     #companyLogo{ // Goodys
-       width:12%;
+       width:10%;
         font-size:1.2em;
     }
 #navBarTop{
@@ -17,42 +16,86 @@
     main{
         display:flex;
         width:45%;
-        margin-left:3%;
+        margin-left:15%;
         input{
-            height:90%;
+            height:60%;
             width:100%;
         }
         button{
-            width:4em;
-            height:3.2em;
-     
+            height:80%;
         }
     }
-    aside{
-       
+    #navBarTopRight{
+      
         margin-left:auto;
         display:flex;
-        justify-content: center;
+        // justify-content: center;
         align-items: center;
-        width:30%;
-     
+       
+  
        a:link{
            text-decoration: none;
        }
             
-        div{
+        .navBarButton{
             display:flex;
-              justify-content: center;
-             align-items: center;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            border-style:solid;
-            border-width:1px;
             height:2em;
             min-width:6em;
         }
-     
+    #myAccount{
+        position: relative;
+        display: inline-block;
+        p{
+           margin-top:auto;
+           margin-bottom:auto;
+        }
+        #loginForm{
+            cursor: default;
+            height:auto;
+            display: none;
+            position: absolute;
+            flex-direction:column;
+            background-color:rgb(226, 217, 217);
+            width:10em;
+            p{
+               
+                margin-right:auto;
+                margin-left:5%;
+                font-size:0.8em;
+            }
+            input{
+                width:80%;
+            }
+            input::placeholder{
+                font-size:0.85em;
+            }
+            #loginFormOptionBox{
+                margin-top:20%;
+                display:flex;
+                flex-direction:column;
+                align-items:flex-start;
+                #loginButton{
+                    margin-left:5%;
+                    margin-top:-15%;
+                }
+            aside{
+                display:flex;
+                flex-direction:row;
+                align-items:flex-start;
+                button{
+                margin-top:3%;
+                font-size:0.7em;
+                text-align:start;
+                }
+            }
+         
+            }
+        }
+    }
     #wishlist{
- 
         position: relative;
         display: inline-block;
     }
@@ -61,6 +104,7 @@
         height:auto;
         display: none;
         position: absolute;
+        background-color: ghostwhite;
     }
     .mini-wishBox{
         display:none;
@@ -79,7 +123,7 @@
     #wishlist:hover{
         #wishlistHover{
             display:block;
-            background-color: ghostwhite;
+
         }
         .mini-wishBox{
             display:flex;
@@ -123,5 +167,4 @@
        
     }
     }
-    
 }}
