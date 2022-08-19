@@ -8,6 +8,7 @@ import Shop from "./components/Shop";
 import Info from "./components/Info";
 import MyAccount from "./components/MyAccount";
 import CheckOut from "./components/CheckOut";
+import RegisterForm from "./components/RegisterForm";
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
     <Route path="/info" element={<Info/>}> </Route>
     <Route path="/myAccount" element={<MyAccount/>}> </Route>
     <Route path="/checkOut" element={<CheckOut/>}> </Route>
+      <Route path="/accountRegister" element={<RegisterForm/>}></Route>
     </Routes>
     </Router>
     </div>

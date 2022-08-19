@@ -45,13 +45,14 @@ const totalSum = props.shoppingCartItems.reduce(
       </main>
       <aside id="navBarTopRight">
         
-          <div class="navBarButton"><Link to="/info" >Info </Link></div>
+          <div className="navBarButton"><Link to="/info" >Info </Link></div>
 
-          <div class="navBarButton" id="myAccount"><p onClick={loginPopUp}>my<br/> Account</p>
+          <div className="navBarButton" id="myAccount"><p onClick={loginPopUp}>my<br/> Account</p>
           <br/>
           <LoginForm/>
+          
           </div>
-          <div class="navBarButton" id="wishlist">
+          <div className="navBarButton" id="wishlist">
           Wishlist
           <br/>
           ({props.wishListItems ? props.wishListItems.length:0})
@@ -60,7 +61,7 @@ const totalSum = props.shoppingCartItems.reduce(
             <p>full view</p>
           </div>
         </div>
-        <div class="navBarButton" id="shoppingCartNav" >
+        <div className="navBarButton" id="shoppingCartNav" >
           Shopping Cart
           <br></br>({props.shoppingCartItems ? props.shoppingCartItems.length:0})
           <div id="shoppingCartHover">
