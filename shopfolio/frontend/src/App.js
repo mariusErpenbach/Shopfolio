@@ -18,7 +18,7 @@ function App() {
     <Route path="/info" element={<Info/>}> </Route>
     <Route path="/myAccount" element={<MyAccount/>}> </Route>
     <Route path="/checkOut" element={<CheckOut/>}> </Route>
-      <Route path="/accountRegister" element={<RegisterForm/>}></Route>
+    <Route path="/accountRegister" element={<RegisterForm/>}></Route>
     </Routes>
     </Router>
     </div>

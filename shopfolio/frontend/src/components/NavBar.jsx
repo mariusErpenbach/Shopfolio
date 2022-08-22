@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = (props) => {
+  const navigate = useNavigate();
+
+  const Logout = async () => {
+    try {
+        await axios.delete('http://localhost:5000/logout');
+        navigate.push("/");
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 const loginPopUp = () => {
     let element = document.querySelector("#loginForm")
@@ -13,7 +26,7 @@ const loginPopUp = () => {
     }
 }
 
-let remover = props.removeCartItem;
+
 
   const miniWishList = props.wishListItems.map((item,i)=>(
     <div className="mini-wishBox" key={i} value={item} >{item}
@@ -73,6 +86,7 @@ const totalSum = props.shoppingCartItems.reduce(
                 </Link>
           </div>
         </div>
+        <button onClick={Logout}>Log Out</button>
       </aside>
     </div>
   );

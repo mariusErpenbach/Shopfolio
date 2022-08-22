@@ -1,65 +1,64 @@
+import React, { useState } from 'react'
 import axios from "axios";
-import React,{useState} from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm = () => {
 
-    let history = useNavigate();
-
-    const [data, setData] = useState({
-        first_name:"",
-        last_name:"",
-        email_adress:"",
-        password:""
-    }) // our state is a object with 4 fields, we use our handleChange to configure the values.
-
-    const handleChange = (e) => {
-        setData({...data,[e.target.name]:e.target.value})
-        console.log(data)
-    } 
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confPassword, setConfPassword] = useState('');
+    const [msg, setMsg] = useState('');
+    const navigate = useNavigate();
  
-    const submitForm = (e) =>{
+    const Register = async (e) => {
         e.preventDefault();
-        console.log(data)
-        let formData = new FormData()
-        formData.append("text","testText")
-        const url = "http://localhost/react-backend/"
-        axios.post(url,formData)
-        .then(res=>console.log(res.data))
-        .catch(err=>console.log(err))
+        try {
+            await axios.post('http://localhost:5000/users', {
+                name: name,
+                email: email,
+                password: password,
+                confPassword: confPassword
+            });
+            console.log("something happened")
+            navigate.push("/");
+        } catch (error) {
+            if (error.response) {
+                setMsg(error.response.data.msg);
+            }
+        }
     }
 
-    return(<form id="RegisterForm" onSubmit={submitForm}>
-    <h3>sign up</h3>
-    <input 
-    onChange={handleChange} 
-    type="text" 
-    name="first_name"
-    value={data.first_name}
-    placeholder="first name">
-    </input>
-    <input 
-       onChange={handleChange}
-    type="text" 
-    name="last_name"
-    value={data.last_name}
-    placeholder="last_name"> 
-    </input>
-    <input 
-       onChange={handleChange}
-    type="email"
-    name="email_address" 
-    value={data.email_address}
-    placeholder="email@address"> 
-    </input>
-    <input 
-       onChange={handleChange}
-    type="password"
-    name="password" 
-    value={data.password}
-    placeholder="password"> 
-    </input>
-    <input type="submit" name="submit" value="Register" ></input>
+    return(<form id="RegisterForm" onSubmit={Register}>
+                   <p>{msg}</p>
+                                <div>
+                                    <label className="label">Name</label>
+                                    <div className="controls">
+                                        <input type="text" className="input" placeholder="Name"
+                                            value={name} onChange={(e) => setName(e.target.value)} />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="label">Email</label>
+                                    <div className="controls">
+                                        <input type="text" className="input" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="label">Password</label>
+                                    <div className="controls">
+                                        <input type="password" className="input" placeholder="******" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="label">Confirm Password</label>
+                                    <div className="controls">
+                                        <input type="password" className="input" placeholder="******" value={confPassword} onChange={(e) => setConfPassword(e.target.value)} />
+                                    </div>
+                                </div>
+                                <div>
+                                    <button >Register</button>  
+                                </div>
     </form>)
 }
 
