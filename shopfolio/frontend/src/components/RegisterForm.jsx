@@ -20,8 +20,8 @@ const RegisterForm = () => {
                 password: password,
                 confPassword: confPassword
             });
-            console.log("something happened")
-            navigate.push("/");
+          
+           window.open("/registrationSuccess")
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);

@@ -2,15 +2,71 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
+
+// import { useNavigate } from 'react-router-dom';
 
 const NavBar = (props) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [token, setToken] = useState('');
+  const [expire, setExpire] = useState('');
+  const [users, setUsers] = useState([]);
+ 
+  useEffect(() => {
+    refreshToken();
+    getUsers();
+}, []);
+
+
+  const refreshToken = async () => { // we create an async function called refreshToken
+    try {
+        const response = await axios.get('http://localhost:5000/token'); // we use a const response to GET a new token from our backend. 
+        setToken(response.data.accessToken);
+        const decoded = jwt_decode(response.data.accessToken);
+        
+        setName(decoded.name);
+       
+        setExpire(decoded.exp);
+    } catch (error) {
+        if (error.response) {
+        
+        }
+    }
+}
+  const axiosJWT = axios.create();
+
+  axiosJWT.interceptors.request.use(async (config) => {
+    const currentDate = new Date();
+    if (expire * 1000 < currentDate.getTime()) {
+        const response = await axios.get('http://localhost:5000/token');
+        config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+     
+        setToken(response.data.accessToken);
+        console.log(token)
+        const decoded = jwt_decode(response.data.accessToken);
+        setName(decoded.name);
+        setExpire(decoded.exp);
+    }
+    return config;
+}, (error) => {
+    return Promise.reject(error);
+});
+
+const getUsers = async () => {
+  const response = await axiosJWT.get('http://localhost:5000/users', {
+      headers: {
+          Authorization: `Bearer ${token}`
+      }
+  });
+  setUsers(response.data);
+}
+
 
   const Logout = async () => {
     try {
         await axios.delete('http://localhost:5000/logout');
-        navigate.push("/");
+        window.open("/","_self")
     } catch (error) {
         console.log(error);
     }
@@ -19,7 +75,7 @@ const NavBar = (props) => {
 
 const loginPopUp = () => {
     let element = document.querySelector("#loginForm")
-    if(element.style.display != "flex")
+    if(element.style.display !== "flex")
     element.style.display = "flex";
     else {
       element.style.display = "none";
@@ -60,7 +116,9 @@ const totalSum = props.shoppingCartItems.reduce(
         
           <div className="navBarButton"><Link to="/info" >Info </Link></div>
 
-          <div className="navBarButton" id="myAccount"><p onClick={loginPopUp}>my<br/> Account</p>
+          <div className="navBarButton" id="myAccount">
+          {name?name:(<p onClick={loginPopUp}>my<br/> Account</p>)}
+          
           <br/>
           <LoginForm/>
           

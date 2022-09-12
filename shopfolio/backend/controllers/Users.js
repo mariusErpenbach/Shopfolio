@@ -32,19 +32,25 @@ export const Register = async(req, res) => {
  
 export const Login = async(req, res) => {
     try {
+
+        // first we search for the right user in our Database Users, by using findAll().  
         const user = await Users.findAll({
-            where:{
-                email: req.body.email
+            where:{ // "where" resembles the place to look for, in my case its the email column that matched the Email address the user has entered. 
+                email: req.body.email 
             }
         });
-        const match = await bcrypt.compare(req.body.password, user[0].password);
-        if(!match) return res.status(400).json({msg: "Wrong Password"});
-        const userId = user[0].id;
+
+        const match = await bcrypt.compare(req.body.password, user[0].password); // with bcrypt.compare() we can compare the password the user has entered with the password in our database.
+        if(!match) return res.status(400).json({msg: "Wrong Password"}); // compare() returns boolean
+        // Now that we know the users input was correctly, we assign our variables with values from the database.
+        const userId = user[0].id;  
         const name = user[0].name;
         const email = user[0].email;
+
+        // now token time
         const accessToken = jwt.sign({userId, name, email}, process.env.ACCESS_TOKEN_SECRET,{
             expiresIn: '15s'
-        });
+        }); // we created a object with the jwt.sign() function. The first parameter is an object with the variables we want to create the token for, the second parameter  
         const refreshToken = jwt.sign({userId, name, email}, process.env.REFRESH_TOKEN_SECRET,{
             expiresIn: '1d'
         });
