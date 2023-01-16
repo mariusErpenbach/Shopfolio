@@ -13,17 +13,22 @@ const RegisterForm = () => {
  
     const Register = async (e) => {
         e.preventDefault();
+
+
+
         try {
-            await axios.post('http://localhost:5000/users', {
-                name: name,
+            await axios.post('http://localhost:5000/users', { // we post our data object to users.
+                name: name, 
                 email: email,
                 password: password,
                 confPassword: confPassword
             });
-          
+            // since the database uses a unique key for email adress, we prevent the user from chosing an existing one.
            window.open("/registrationSuccess")
         } catch (error) {
+           
             if (error.response) {
+          
                 setMsg(error.response.data.msg);
             }
         }

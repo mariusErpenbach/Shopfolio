@@ -13,13 +13,13 @@ export const getUsers = async(req, res) => {
     }
 }
  
-export const Register = async(req, res) => {
+export const Register = async(req, res) => { // 
     const { name, email, password, confPassword } = req.body;
     if(password !== confPassword) return res.status(400).json({msg: "Password and Confirm Password do not match"});
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
     try {
-        await Users.create({
+        await Users.create({ // note that the database has a unique key for email adresses. This prevents 
             name: name,
             email: email,
             password: hashPassword

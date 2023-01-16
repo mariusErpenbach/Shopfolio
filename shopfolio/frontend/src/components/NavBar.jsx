@@ -41,7 +41,7 @@ const NavBar = (props) => {
     if (expire * 1000 < currentDate.getTime()) {
         const response = await axios.get('http://localhost:5000/token');
         config.headers.Authorization = `Bearer ${response.data.accessToken}`;
-     
+        
         setToken(response.data.accessToken);
         console.log(token)
         const decoded = jwt_decode(response.data.accessToken);
@@ -144,7 +144,8 @@ const totalSum = props.shoppingCartItems.reduce(
                 </Link>
           </div>
         </div>
-        <button onClick={Logout}>Log Out</button>
+
+        {name?(<button onClick={Logout}>Log Out</button>):<div></div>}
       </aside>
     </div>
   );
