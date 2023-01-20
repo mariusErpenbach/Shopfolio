@@ -3,8 +3,8 @@
         "productName" : "Airmax",
         "productCategorie" : "shoes",
         "price": 120,
-        "target-group" :[
-            "female","male"
+        "target-group" : [
+            "unisex"
         ],
         "sizesOnStock" : [
             {"OneSize":false},
@@ -23,7 +23,7 @@
         "productCategorie" : "shoes",
         "price": 100,
         "target-group" :[
-            "female","male"
+            "unisex"
         ],
         "sizesOnStock" : [
             {"OneSize":false},
@@ -61,7 +61,7 @@
         "productCategorie" : "pants",
         "price": 55,
         "target-group" :[
-            "female","male","kids-f","kids-m"
+            "unisex"
         ],
         "sizesOnStock" : [
             {"OneSize":false},
@@ -80,7 +80,7 @@
         "productCategorie" : "pants",
         "price": 80,
         "target-group" :[
-            "male","kids-m"
+            "male"
         ],
         "sizesOnStock" : [
             {"OneSize":false},
@@ -99,7 +99,7 @@
         "productCategorie" : "pants",
         "price": 45,
         "target-group" :[
-            "female","kids-f"
+            "female"
         ],
         "sizesOnStock" : [
             {"OneSize":false},
@@ -118,7 +118,7 @@
         "productCategorie" : "Sport",
         "price": 25,
         "target-group" :[
-            "female","male","kids-f","kids-m"
+            "unisex"
         ],
         "sizesOnStock" : [
             {"OneSize":true},
@@ -131,7 +131,7 @@
         "productCategorie" : "Sport",
         "price": 20,
         "target-group" :[
-            "female","male","kids-f","kids-m"
+            "unisex"
         ],
         "sizesOnStock" : [
             {"OneSize":true},

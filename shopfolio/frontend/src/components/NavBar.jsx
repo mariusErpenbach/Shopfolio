@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import LoginForm from "./LoginForm";
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
+import Searchbar from "./navBarComponents/Searchbar";
 
 // import { useNavigate } from 'react-router-dom';
 
@@ -107,10 +108,7 @@ const totalSum = props.shoppingCartItems.reduce(
   return (
     <div id="navBarTop">
       <main>
-        <input id="searchBar" onChange={props.getUserInput}></input>
-        <button>
-          <i className="fas fa-search"></i>
-        </button>
+        <Searchbar props = {props.getUserInput}></Searchbar>
       </main>
       <aside id="navBarTopRight">
         
