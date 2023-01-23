@@ -25,12 +25,15 @@ const clearFilter = () =>{
 }
 
 
-  const wordFilter = () => {
+  const wordFilter = () => { // wordFilter is used in the searchBar 
     const userInputLetters = userInput.toLocaleLowerCase().trim();
     const userInputLength = userInputLetters.length;
     let newArray = data.filter((item) => {
       const slicedProductName = item.productName.slice(0, userInputLength);
-      return userInput === slicedProductName.toLocaleLowerCase()
+      const slicedCategorieName = item.productCategorie.slice(0,userInputLength);
+      return userInput === 
+      slicedProductName.toLocaleLowerCase(),
+      userInput === slicedCategorieName.toLocaleLowerCase();
     });
     return newArray;
   };

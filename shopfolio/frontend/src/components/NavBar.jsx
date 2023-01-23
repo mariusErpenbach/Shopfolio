@@ -8,6 +8,9 @@ import Searchbar from "./navBarComponents/Searchbar";
 // import { useNavigate } from 'react-router-dom';
 
 const NavBar = (props) => {
+
+ 
+
   // const navigate = useNavigate();
   const [name, setName] = useState('');
   const [token, setToken] = useState('');
@@ -108,7 +111,7 @@ const totalSum = props.shoppingCartItems.reduce(
   return (
     <div id="navBarTop">
       <main>
-        <Searchbar props = {props.getUserInput}></Searchbar>
+        <Searchbar getUserInput={props.getUserInput} ></Searchbar>
       </main>
       <aside id="navBarTopRight">
         
