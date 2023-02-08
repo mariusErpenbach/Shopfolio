@@ -17,14 +17,17 @@ const RegisterForm = () => {
 
 
         try {
-            await axios.post('http://localhost:5000/users', { // we post our data object to users.
+// we post our data object to users. We declared a route in our backend index to our Register function there. 
+            await axios.post('http://localhost:5000/users', {
+
+// since the database uses a unique key for email adress, we prevent the user from chosing an existing one.
                 name: name, 
                 email: email,
                 password: password,
                 confPassword: confPassword
             });
-            // since the database uses a unique key for email adress, we prevent the user from chosing an existing one.
-           window.open("/registrationSuccess")
+// Then we open the registrationSuccess page to welcome the new user
+           window.open("/registrationSuccess")  
         } catch (error) {
            
             if (error.response) {

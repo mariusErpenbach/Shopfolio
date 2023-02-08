@@ -13,24 +13,30 @@ export const getUsers = async(req, res) => {
     }
 }
  
-export const Register = async(req, res) => { // 
+export const Register = async(req, res) => {
+    // 4 variables getting passed from the frontend. 
     const { name, email, password, confPassword } = req.body;
+    // we check if password is matching the confPassword 
     if(password !== confPassword) return res.status(400).json({msg: "Password and Confirm Password do not match"});
+    // we encrypt the user password  
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
+// also: The database has a unique key for email adresses. This prevents the user from entering or to claim an existing one.
     try {
-        await Users.create({ // note that the database has a unique key for email adresses. This prevents 
+        // we try to create an entry on the users db
+        await Users.create({
             name: name,
             email: email,
             password: hashPassword
         });
-        res.json({msg: "Registration Successful"});
+        res.json({msg: "Registration Successful"}); 
     } catch (error) {
         console.log(error);
     }
 }
  
 export const Login = async(req, res) => {
+ 
     try {
 
         // first we search for the right user in our Database Users, by using findAll().  
@@ -39,27 +45,34 @@ export const Login = async(req, res) => {
                 email: req.body.email 
             }
         });
-
-        const match = await bcrypt.compare(req.body.password, user[0].password); // with bcrypt.compare() we can compare the password the user has entered with the password in our database.
-        if(!match) return res.status(400).json({msg: "Wrong Password"}); // compare() returns boolean
-        // Now that we know the users input was correctly, we assign our variables with values from the database.
+// with bcrypt.compare() we can compare the password the user has entered with the password in our database.
+        const match = await bcrypt.compare(req.body.password, user[0].password); 
+// compare() returns boolean that we can check now
+        if(!match) return res.status(400).json({msg: "Wrong Password"}); 
+// Now that we know the users input was correctly, we assign our variables with values from the database.
         const userId = user[0].id;  
         const name = user[0].name;
         const email = user[0].email;
-
-        // now token time
+        
+// we create an object with the jwt.sign() function.
+// The first parameter is an object with the userData(id,name,email)
+// The second parameter is process.ACCESS_TOKEN_SECRET 
         const accessToken = jwt.sign({userId, name, email}, process.env.ACCESS_TOKEN_SECRET,{
-            expiresIn: '15s'
-        }); // we created a object with the jwt.sign() function. The first parameter is an object with the variables we want to create the token for, the second parameter  
+            // expiresIn declares how long the token is usable
+            expiresIn: '15s' 
+
+        }); 
+// we create another object for the refreshToken, again with the same parameters. 
         const refreshToken = jwt.sign({userId, name, email}, process.env.REFRESH_TOKEN_SECRET,{
             expiresIn: '1d'
+
         });
-        await Users.update({refresh_token: refreshToken},{
+        await Users.update({refresh_token: refreshToken},{ // the refreshToken will be updated.
             where:{
                 id: userId
             }
         });
-        res.cookie('refreshToken', refreshToken,{
+        res.cookie('refreshToken', refreshToken,{  
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000
         });

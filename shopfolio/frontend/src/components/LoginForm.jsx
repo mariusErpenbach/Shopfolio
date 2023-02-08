@@ -10,13 +10,13 @@ const LoginForm = () => {
  
   const Auth = async (e) => {
     e.preventDefault();
-    try {
+    try { 
       // we post email and password to the login backend.
-      await axios.post("http://localhost:5000/login", {
+      await axios.post("http://localhost:5000/login", { // post on login => Login()
         email: email,
         password: password,
       });
-      window.open("/","_self")
+      window.open("/","_self") 
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
