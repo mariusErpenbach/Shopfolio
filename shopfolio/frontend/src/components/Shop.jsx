@@ -4,7 +4,7 @@ import SideBar from "./SideBar";
 import Products from "./Products";
 import data from "./Cataloge.json";
 import LoginForm from "./LoginForm";
-
+import ProductList from "./ProductList";
 const Shop = () => {
   const [items, setitems] = useState(data);
   const [userInput, setuserInput] = useState("");
@@ -134,6 +134,7 @@ const clearFilter = () =>{
         addItemToCart={addItemToCart}
         newWishItem={newWishItem}
       />
+       <ProductList></ProductList>
     </div>
   );
 };

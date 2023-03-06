@@ -1,5 +1,5 @@
 import React from "react";
-import databaseProducts from "./databaseProducts";
+
 const Products = (props) => {
   const inventory = props.items.map((item, i) => (
     <div className="productBox" key={item.productName + "box"}> 
@@ -23,7 +23,7 @@ const Products = (props) => {
           ></i>
         </button>
       </footer>
-      
+   
     </div>
   ));
 
