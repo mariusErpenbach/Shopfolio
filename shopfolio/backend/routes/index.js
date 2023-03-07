@@ -11,8 +11,7 @@ router.post('/users', Register);
 router.post('/login', Login);
 router.get('/token', refreshToken);
 router.delete('/logout', Logout);
-
-router.get('/products', verifyToken, async (req, res) => {
+router.get('/products', async (req, res) => {
   try {
     const pool = mysql.createPool({
       host: 'localhost',

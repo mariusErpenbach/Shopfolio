@@ -6,7 +6,7 @@ function ProductList() {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await axios.get('/api/products');
+      const response = await axios.get('http://localhost:5000/products');
       setProducts(response.data);
     }
     fetchData();
