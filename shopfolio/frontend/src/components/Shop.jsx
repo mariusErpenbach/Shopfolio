@@ -1,45 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import Products from "./Products";
-import data from "./Cataloge.json";
-import LoginForm from "./LoginForm";
-import ProductList from "./ProductList";
+
+
+
 const Shop = () => {
-  const [items, setitems] = useState(data);
+ 
   const [userInput, setuserInput] = useState("");
   const [filteredData, setfilteredData] = useState("");
   const [shoppingCartItems, setshoppingCartItems] = useState([]);
   const [wishListItems, setwishListItems] = useState([]);
   const [checkOutItems, setcheckOutItems] = useState([]);
+  const [products, setProducts] = useState([]);
   
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get('http://localhost:5000/products');
+      setProducts(response.data);
+    }
+    fetchData();
+  }, []);
+
   const getuserInput = (e) => {
+    console.log(userInput)
     setuserInput(e.target.value);
     getfilteredData();
   };
 
+  const getfilteredData = () => {
+    let words = wordFilter();
+    setfilteredData(words);
+};
 
 const clearFilter = () =>{
   setuserInput("")
   setfilteredData("");
 }
+const wordFilter = () => {
+  const userInputLetters = userInput.toLocaleLowerCase().trim();
+  let newArray = products.filter((item) => {
+    return (
+      item.productName.toLocaleLowerCase().includes(userInputLetters) ||
+      item.productCategorie.toLocaleLowerCase().includes(userInputLetters)
+    );
+  });
+  return newArray;
+};
 
-
-  const wordFilter = () => { // wordFilter is used in the searchBar 
-    const userInputLetters = userInput.toLocaleLowerCase().trim();
-    const userInputLength = userInputLetters.length;
-    let newArray = data.filter((item) => {
-      const slicedProductName = item.productName.slice(0, userInputLength);
-      const slicedCategorieName = item.productCategorie.slice(0,userInputLength);
-      return userInput === 
-      slicedProductName.toLocaleLowerCase(),
-      userInput === slicedCategorieName.toLocaleLowerCase();
-    });
-    return newArray;
-  };
 
   const userCategory = (e) => {
-    let newArray = data.filter((item) => {
+    let newArray = products.filter((item) => {
      
       return  e.target.innerHTML.toLowerCase() === item.productCategorie.toLowerCase()
       
@@ -47,17 +59,10 @@ const clearFilter = () =>{
     setfilteredData(newArray);
     setuserInput("1")
   };
-
-  const getfilteredData = () => {
-      let words = wordFilter();
-      setfilteredData(words);
-  };
-
-
   const addItemToCart = (e) => {
     let newArray = [e.target.getAttribute("value"),e.target.getAttribute("price")]
     setshoppingCartItems((oldArray=>[...oldArray,newArray]))
-    let newCheckOutCart = data.filter((item)=>{
+    let newCheckOutCart = products.filter((item)=>{
       return item.productName === e.target.getAttribute("value")
     })
 
@@ -65,7 +70,7 @@ const clearFilter = () =>{
   }
 
   const removeCartItem = (e) =>{
-
+    
     let elementRemoved = false;
     let newArray = shoppingCartItems.filter((item)=>{
         if (item[0]===e.target.parentElement.getAttribute("value")){
@@ -127,14 +132,16 @@ const clearFilter = () =>{
         checkOutItems={checkOutItems}
         />
       </header>
-      <SideBar categoryFilter={userCategory}
+      <SideBar
+       categoryFilter={userCategory}
       clearFilter={clearFilter} />
+    
       <Products
-        items={userInput ? filteredData : items}
+        items={userInput ? filteredData : products}
         addItemToCart={addItemToCart}
         newWishItem={newWishItem}
       />
-       <ProductList></ProductList>
+  
     </div>
   );
 };

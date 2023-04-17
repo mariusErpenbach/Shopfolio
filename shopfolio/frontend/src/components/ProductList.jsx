@@ -13,7 +13,7 @@ function ProductList() {
   }, []);
 
   return (
-    <div>
+    <div id="databaseProductBox">
       <h2>Products</h2>
       <ul>
         {products.map((product) => (

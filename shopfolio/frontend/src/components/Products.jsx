@@ -1,9 +1,11 @@
 import React from "react";
 
+
 const Products = (props) => {
+  console.log(props.items)
   const inventory = props.items.map((item, i) => (
     <div className="productBox" key={item.productName + "box"}> 
-      <img src={item.img} alt={"picture of " + item.productName}></img>
+      <img src={item.imgPath} alt={"picture of " + item.productName}></img>
       <div className="productName">{item.productName}</div>
       <div className="productPrice">{item.price}€</div>
       <footer>
@@ -12,13 +14,14 @@ const Products = (props) => {
           onClick={props.addItemToCart}
           value={item.productName}
           price={item.price}
+          key={`${item.id}-${i}`}
         >
           to Cart
         </button>
         <button className="addToFavBtn" value={[item.productName]}>
           <i
             className="far fa-star"
-            key={item.productName}
+            key={`${item.id}-${i}-fav`}
             onClick={props.newWishItem}
           ></i>
         </button>
