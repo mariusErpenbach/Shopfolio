@@ -2,7 +2,7 @@ import React from "react";
 
 
 const Products = (props) => {
-  console.log(props.items)
+ 
   const inventory = props.items.map((item, i) => (
     <div className="productBox" key={item.productName + "box"}> 
       <img src={item.imgPath} alt={"picture of " + item.productName}></img>

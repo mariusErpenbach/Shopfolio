@@ -109,9 +109,9 @@ const totalSum = props.shoppingCartItems.reduce(
 
   return (
     <div id="navBarTop">
-      <main>
+    
         <Searchbar getUserInput={props.getUserInput} ></Searchbar>
-      </main>
+      
       <aside id="navBarTopRight">
         
           <div className="navBarButton"><Link to="/info" >Info </Link></div>

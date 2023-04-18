@@ -1,0 +1,11 @@
+#searchBar {
+    display:flex;
+    flex-direction:row;
+    background-color:yellow;
+    width:40em;
+    input{
+        margin-left:15%;
+      width:80%;
+      height:2em;
+    }
+}
