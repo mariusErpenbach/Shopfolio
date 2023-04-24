@@ -3,7 +3,7 @@ import axios from 'axios';
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
 import Products from "./Products";
-
+import WelcomeBanner from "./WelcomeBanner"
 
 
 const Shop = () => {
@@ -132,6 +132,8 @@ const wordFilter = () => {
         checkOutItems={checkOutItems}
         />
       </header>
+      <main>
+       <WelcomeBanner></WelcomeBanner>
       <SideBar
        categoryFilter={userCategory}
       clearFilter={clearFilter} />
@@ -141,7 +143,11 @@ const wordFilter = () => {
         addItemToCart={addItemToCart}
         newWishItem={newWishItem}
       />
-  
+       
+      </main>
+      <footer>
+   
+      </footer>
     </div>
   );
 };
