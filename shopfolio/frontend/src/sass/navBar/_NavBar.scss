@@ -87,6 +87,7 @@
     #wishlist{
         position: relative;
         display: inline-block;
+        z-index: 1.5;
     }
     #wishlistHover{
         min-width:6em;
@@ -94,6 +95,7 @@
         display: none;
         position: absolute;
         background-color: ghostwhite;
+        z-index: 1.5;
     }
     .mini-wishBox{
         display:none;
