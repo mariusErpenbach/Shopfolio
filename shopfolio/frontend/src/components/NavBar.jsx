@@ -90,7 +90,7 @@ const loginPopUp = () => {
   const miniWishList = props.wishListItems.map((item,i)=>(
     <div className="mini-wishBox" key={i} value={item} >{item}
     <button onClick={props.removeWish}>
-    <i className="fas fa-times" ></i>
+    <i className="fas fa-times"  ></i>
     </button></div>
   ))
 

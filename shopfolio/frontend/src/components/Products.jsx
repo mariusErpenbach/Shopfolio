@@ -23,6 +23,7 @@ const Products = (props) => {
             className="far fa-star"
             key={`${item.id}-${i}-fav`}
             onClick={props.newWishItem}
+            id={item.productName +"favButton"}
           ></i>
         </button>
       </footer>

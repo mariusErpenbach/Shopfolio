@@ -99,6 +99,7 @@ const wordFilter = () => {
     if(wishListItems.includes(e.target.parentElement.value) !== true){ 
    setwishListItems((oldArray) => [...oldArray, e.target.parentElement.value])
    e.target.style = "background-color:yellow;"
+   // if it was not included it means we can add it. else the list does include it already which means we need to delete it.
   } else {
     console.log(wishListItems)
     let newArray = wishListItems.filter((item)=>{
@@ -111,10 +112,16 @@ const wordFilter = () => {
   }
   }
   const removeWish = (e) =>{
-    let newArray = wishListItems.filter((item)=>{
-      if (item!==e.target.parentElement.getAttribute("value")){return item}
+    let newArray = wishListItems.filter((item)=>{ 
+      if (item!==e.target.parentElement.getAttribute("value")){
+   
+        return item}
       else 
       console.log("item removed")
+      let oldWish = document.getElementById(e.target.parentElement.getAttribute("value") + "favButton")
+      console.log(oldWish)
+      oldWish.style = "background-color:none"
+      console.log(e.target.parentElement.getAttribute("value"))
     })
     setwishListItems(newArray)
    }
