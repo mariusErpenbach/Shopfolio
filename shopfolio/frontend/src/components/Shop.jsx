@@ -14,7 +14,7 @@ const Shop = () => {
   const [wishListItems, setwishListItems] = useState([]);
   const [checkOutItems, setcheckOutItems] = useState([]);
   const [products, setProducts] = useState([]);
-  
+  // useEffect hook used to fetch data from a server when the component mounts
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get('http://localhost:5000/products');
@@ -22,22 +22,23 @@ const Shop = () => {
     }
     fetchData();
   }, []);
-
+  // Handler function that gets user input and triggers a filter function
   const getuserInput = (e) => {
     console.log(userInput)
     setuserInput(e.target.value);
     getfilteredData();
   };
-
+// Function that filters the data based on user input
   const getfilteredData = () => {
     let words = wordFilter();
     setfilteredData(words);
 };
-
+// Function that clears the filters and user input
 const clearFilter = () =>{
   setuserInput("")
   setfilteredData("");
 }
+// Function that performs the actual filtering of the data based on user input
 const wordFilter = () => {
   const userInputLetters = userInput.toLocaleLowerCase().trim();
   let newArray = products.filter((item) => {
@@ -49,7 +50,7 @@ const wordFilter = () => {
   return newArray;
 };
 
-
+ // Handler function that filters products based on their category
   const userCategory = (e) => {
     let newArray = products.filter((item) => {
      
@@ -59,6 +60,7 @@ const wordFilter = () => {
     setfilteredData(newArray);
     setuserInput("1")
   };
+   // Handler function that adds an item to the shopping cart
   const addItemToCart = (e) => {
     let newArray = [e.target.getAttribute("value"),e.target.getAttribute("price")]
     setshoppingCartItems((oldArray=>[...oldArray,newArray]))
@@ -68,7 +70,7 @@ const wordFilter = () => {
 
     setcheckOutItems((oldArray) => [...oldArray, newCheckOutCart])
   }
-
+ // Handler function that removes an item from the shopping cart
   const removeCartItem = (e) =>{
     
     let elementRemoved = false;
